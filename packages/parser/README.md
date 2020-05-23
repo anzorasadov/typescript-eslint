@@ -51,7 +51,11 @@ The following additional configuration options are available by specifying them 
 interface ParserOptions {
   ecmaFeatures?: {
     jsx?: boolean;
+    globalReturn?: boolean;
   };
+  ecmaVersion?: number;
+  lib?: string[];
+
   project?: string | string[];
   projectFolderIgnoreList?: (string | RegExp)[];
   tsconfigRootDir?: string;
@@ -76,6 +80,31 @@ Enable parsing JSX when `true`. More details can be found [here](https://www.typ
   - `.js`, `.jsx`, `.tsx` files are parsed as if this is true.
   - `.ts` files are parsed as if this is false.
   - "unknown" extensions (`.md`, `.vue`) **are parsed as if this is false**.
+
+### `parserOptions.ecmaFeatures.globalReturn`
+
+Default `false`.
+
+This options allows you to tell the parser if you want to allow global `return` statements in your codebase.
+
+### `parserOptions.ecmaVersion`
+
+Default `2018`.
+
+Accepts any valid ECMAScript version number:
+
+- A version: 3, 5, 6, 7, 8, 9, 10, 11, ..., or
+- A year: 2015, 2016, 2017, 2018, 2019, 2020, ...
+
+Specifies the version of ECMAScript syntax you want to use. This is used by the parser to determine how to perform scope analysis, and it affects the default
+
+### `parserOptions.lib`
+
+Default `['es2018']`
+
+For valid options, see the [TypeScript compiler options](https://www.typescriptlang.org/tsconfig#lib).
+
+Specifies the TypeScript `lib`s that are available. This is used by the scope analyser to ensure there are global variables declared for the types exposed by TypeScript.
 
 ### `parserOptions.project`
 
